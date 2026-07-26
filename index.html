@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Jargon Glossary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-subtle: #f7f7f8;
+    --bg-raised: #ffffff;
+    --text: #0f0f12;
+    --text-secondary: #6b7280;
+    --text-tertiary: #9ca3af;
+    --border: #e8e8ea;
+    --border-strong: #d7d7db;
+    --accent: #5046e5;
+    --accent-hover: #3f37c9;
+    --accent-soft: #eeedfd;
+    --danger: #dc2626;
+    --danger-soft: #fdeeee;
+    --success: #059669;
+    --success-soft: #e9f8f3;
+
+    --cat-product: #2563eb;
+    --cat-engineering: #7c3aed;
+    --cat-design: #db2777;
+    --cat-metrics: #d97706;
+    --cat-marketplace: #dc2626;
+    --cat-process: #059669;
+
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --tab-active-bg: #18181b;
+  }
+
+  * { box-sizing: border-box; }
+
+  .fg-root {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    padding: 52px 28px 68px;
+    min-height: 100%;
+    border-radius: 14px;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .fg-root.fg-dark {
+    --bg: #101014;
+    --bg-subtle: #1a1a1f;
+    --bg-raised: #1a1a1f;
+    --text: #f2f2f4;
+    --text-secondary: #a3a3ac;
+    --text-tertiary: #75757f;
+    --border: #2a2a30;
+    --border-strong: #3a3a42;
+    --accent: #8b85f5;
+    --accent-hover: #a29cff;
+    --accent-soft: #23213d;
+    --tab-active-bg: #4338ca;
+  }
+
+  .fg-theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .fg-theme-toggle:hover { color: var(--text); border-color: var(--border-strong); }
+  .fg-theme-toggle svg { width: 16px; height: 16px; }
+
+  .fg-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .fg-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .fg-title {
+    font-weight: 800;
+    font-size: clamp(28px, 4.5vw, 38px);
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+    color: var(--text);
+  }
+  .fg-sub {
+    color: var(--text-secondary);
+    font-size: 15px;
+    max-width: 460px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .fg-search-row {
+    max-width: 480px;
+    margin: 36px auto 26px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .fg-search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+  .fg-search {
+    width: 100%;
+    height: 38px;
+    background: var(--bg-subtle);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0 14px 0 36px;
+    font-family: var(--font);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .fg-search:focus {
+    border-color: var(--accent);
+    background: var(--bg);
+  }
+  .fg-search::placeholder { color: var(--text-tertiary); }
+  .fg-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    color: var(--text-tertiary);
+    pointer-events: none;
+  }
+
+  .fg-toggle {
+    display: flex;
+    background: var(--bg-subtle);
+    border-radius: 999px;
+    padding: 3px;
+    border: 1px solid var(--border);
+  }
+  .fg-toggle button {
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 15px;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .fg-toggle button.active {
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 600;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  }
+
+  .fg-secondary-row {
+    max-width: 680px;
+    margin: 8px auto 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fg-add-btn {
+    font-family: var(--font);
+    font-size: 12.5px;
+    font-weight: 600;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    height: 38px;
+    padding: 0 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .fg-add-btn svg { width: 13px; height: 13px; }
+  .fg-add-btn:hover { background: var(--accent-hover); }
+
+  .fg-tabs {
+    max-width: 680px;
+    margin: 0 auto 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+  .fg-tab {
+    font-family: var(--font);
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .fg-tab:hover { border-color: var(--border-strong); color: var(--text); }
+  .fg-tab.active {
+    background: var(--tab-active-bg);
+    border-color: var(--tab-active-bg);
+    color: #fff;
+  }
+  .fg-tab-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .fg-count {
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 12.5px;
+    margin: 18px 0 8px;
+  }
+
+  /* ---- List view (two-column table) ---- */
+  .fg-list {
+    max-width: 720px;
+    margin: 12px auto 0;
+  }
+
+  .fg-table-head {
+    display: flex;
+    gap: 24px;
+    padding: 0 8px 14px;
+    border-bottom: 1px solid var(--border-strong);
+  }
+  .fg-table-head span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+  .fg-th-term { width: 150px; flex-shrink: 0; }
+  .fg-th-def { flex: 1; }
+
+  .fg-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 20px 8px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
+  }
+  .fg-row:hover { background: var(--bg-subtle); }
+
+  .fg-row-term-col {
+    width: 150px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .fg-row-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .fg-row-term {
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .fg-row-def-col { flex: 1; min-width: 0; }
+  .fg-row-def {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+  }
+  .fg-row-cat {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+  }
+
+  .fg-row-actions {
+    display: flex;
+    gap: 2px;
+    opacity: 0;
+    transition: opacity 0.12s;
+    flex-shrink: 0;
+  }
+  .fg-row:hover .fg-row-actions { opacity: 1; }
+
+  .fg-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-tertiary);
+    padding: 6px;
+    display: flex;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .fg-icon-btn:hover { color: var(--text); background: var(--border); }
+  .fg-icon-btn svg { width: 14px; height: 14px; }
+
+  .fg-empty {
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 13.5px;
+    padding: 48px 20px;
+  }
+
+  /* ---- Game view ---- */
+  .fg-game {
+    max-width: 440px;
+    margin: 14px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .fg-game-progress {
+    color: var(--text-tertiary);
+    font-size: 12.5px;
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+  .fg-flip-scene {
+    width: 100%;
+    max-width: 380px;
+    height: 230px;
+    perspective: 1200px;
+    margin-bottom: 26px;
+  }
+  .fg-flip-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(.4,.2,.2,1);
+    cursor: pointer;
+  }
+  .fg-flip-card.flipped { transform: rotateY(180deg); }
+  .fg-flip-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 12px 28px rgba(0,0,0,0.07);
+  }
+  .fg-flip-face-back { transform: rotateY(180deg); }
+  .fg-flip-label {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .fg-flip-term {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+  }
+  .fg-flip-def {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .fg-flip-hint {
+    position: absolute;
+    bottom: 16px;
+    right: 18px;
+    font-size: 10.5px;
+    color: var(--text-tertiary);
+  }
+
+  .fg-game-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .fg-round-btn {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 9px 16px;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .fg-round-btn:hover { border-color: var(--border-strong); background: var(--bg-subtle); }
+  .fg-round-btn svg { width: 13px; height: 13px; }
+
+  /* ---- Modal ---- */
+  .fg-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,15,18,0.4);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: 20px;
+  }
+  .fg-modal {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    width: 100%;
+    max-width: 380px;
+    border-radius: var(--radius-md);
+    padding: 28px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    border: 1px solid var(--border);
+  }
+  .fg-modal h3 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 17px;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+  .fg-field { margin-bottom: 16px; }
+  .fg-field label {
+    font-family: var(--font);
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .fg-field input, .fg-field textarea, .fg-field select {
+    width: 100%;
+    font-family: var(--font);
+    font-size: 14px;
+    padding: 9px 11px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.15s;
+  }
+  .fg-field input:focus, .fg-field textarea:focus, .fg-field select:focus { border-color: var(--accent); }
+  .fg-field textarea { min-height: 72px; }
+  .fg-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 22px;
+  }
+  .fg-btn-secondary, .fg-btn-primary {
+    font-family: var(--font);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+  }
+  .fg-btn-secondary { background: transparent; color: var(--text-secondary); }
+  .fg-btn-secondary:hover { color: var(--text); }
+  .fg-btn-primary { background: var(--accent); color: #fff; }
+  .fg-btn-primary:hover { background: var(--accent-hover); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fg-flip-card, .fg-row, .fg-round-btn, .fg-add-btn { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="fg-root">
+  <button class="fg-theme-toggle" id="fg-theme-btn" title="Toggle dark mode" aria-label="Toggle dark mode"></button>
+
+  <div class="fg-header">
+    <div class="fg-eyebrow">Cross-Functional Reference</div>
+    <h1 class="fg-title">The Jargon Glossary</h1>
+    <p class="fg-sub">A working reference for talking fluently with product, engineering, and business partners.</p>
+  </div>
+
+  <div class="fg-search-row">
+    <div class="fg-search-wrap">
+      <svg class="fg-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="fg-search" id="fg-search" type="text" placeholder="Search a term or a definition keyword..." />
+    </div>
+    <button class="fg-add-btn" id="fg-add-open">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add term
+    </button>
+  </div>
+
+  <div class="fg-tabs" id="fg-tabs"></div>
+
+  <div class="fg-secondary-row">
+    <div class="fg-toggle" id="fg-mode-toggle">
+      <button data-mode="list" class="active">List</button>
+      <button data-mode="game">Flashcards</button>
+    </div>
+  </div>
+  <div class="fg-count" id="fg-count"></div>
+
+  <div id="fg-list-view"></div>
+  <div id="fg-game-view" style="display:none;"></div>
+</div>
+
+<div id="fg-modal-root"></div>
+
+<script>
+(function () {
+  const CATEGORIES = [
+    { id: 'product',     label: 'Product & Strategy', color: 'var(--cat-product)' },
+    { id: 'engineering', label: 'Engineering',         color: 'var(--cat-engineering)' },
+    { id: 'design',      label: 'Design-Adjacent',     color: 'var(--cat-design)' },
+    { id: 'metrics',     label: 'Metrics & Business',  color: 'var(--cat-metrics)' },
+    { id: 'marketplace', label: 'Marketplace-Specific',color: 'var(--cat-marketplace)' },
+    { id: 'process',     label: 'Process & Org',       color: 'var(--cat-process)' },
+  ];
+
+  const DEFAULT_TERMS = [
+    { term: 'PRD', def: 'Product Requirements Document — the spec a PM writes defining what is being built and why.', cat: 'product' },
+    { term: 'North Star Metric', def: 'The single metric a team or company organizes around as the primary measure of value delivered.', cat: 'product' },
+    { term: 'OKRs', def: 'Objectives and Key Results — a goal-setting framework pairing a qualitative objective with measurable key results.', cat: 'product' },
+    { term: 'MVP', def: 'Minimum Viable Product — the smallest version of a feature or product that delivers real value.', cat: 'product' },
+    { term: 'Roadmap', def: 'The prioritized sequence of what is being built over time, often organized by quarter.', cat: 'product' },
+    { term: 'PMF', def: 'Product-Market Fit — the point where a product clearly satisfies strong market demand.', cat: 'product' },
+    { term: 'TAM / SAM / SOM', def: 'Total, Serviceable, and Serviceable Obtainable Market — nested circles sizing a market opportunity from broadest to realistically capturable.', cat: 'product' },
+    { term: 'Jobs to Be Done', def: 'A framework for understanding what job a customer is effectively hiring a product to do.', cat: 'product' },
+
+    { term: 'API', def: 'Application Programming Interface — how systems or services talk to each other.', cat: 'engineering' },
+    { term: 'Tech Debt', def: 'Shortcuts taken for speed that create future maintenance cost.', cat: 'engineering' },
+    { term: 'Sprint', def: 'A fixed time-boxed period, often one to two weeks, of work in Scrum.', cat: 'engineering' },
+    { term: 'Backlog', def: 'The prioritized list of work not yet scheduled into a sprint.', cat: 'engineering' },
+    { term: 'CI/CD', def: 'Continuous Integration and Continuous Deployment — the automated pipeline for testing and shipping code.', cat: 'engineering' },
+    { term: 'Latency', def: 'The delay between an action and a system response.', cat: 'engineering' },
+    { term: 'Edge Case', def: 'A rare or extreme scenario a system or design needs to handle correctly.', cat: 'engineering' },
+    { term: 'Feature Flag', def: 'A toggle that turns a feature on or off without a new deploy, often used for gradual rollout or testing.', cat: 'engineering' },
+    { term: 'Monolith vs. Microservices', def: 'One large unified codebase versus many small independent services — affects how fast and independently teams can ship.', cat: 'engineering' },
+    { term: 'Regression', def: 'A bug introduced by a change that breaks something that previously worked.', cat: 'engineering' },
+    { term: 'Agile', def: 'The broader iterative, adaptive, customer-focused philosophy of building software.', cat: 'engineering' },
+    { term: 'Scrum', def: 'An Agile framework built on fixed sprints, a backlog, and defined roles like Product Owner and Scrum Master.', cat: 'engineering' },
+    { term: 'Kanban', def: 'A continuous-flow Agile method using a visual board and WIP limits instead of fixed sprints.', cat: 'engineering' },
+    { term: 'WIP Limit', def: 'Work In Progress limit — a cap on how many items can sit in a given stage at once, forcing focus and finishing.', cat: 'engineering' },
+
+    { term: 'Design System', def: 'A shared library of components, tokens, and guidelines that keeps a product consistent across surfaces.', cat: 'design' },
+    { term: 'Design Debt', def: 'The design equivalent of tech debt — inconsistencies or shortcuts that accumulate over time.', cat: 'design' },
+    { term: 'Handoff', def: 'The point where design work is passed to engineering for build, often via a tool like Figma dev mode.', cat: 'design' },
+    { term: 'Discovery vs. Delivery', def: 'Discovery is the research and problem-definition phase; delivery is the execution and build phase.', cat: 'design' },
+    { term: 'Dual-Track Agile', def: 'Running discovery and delivery as parallel, continuous tracks rather than strictly sequential phases.', cat: 'design' },
+
+    { term: 'NPS', def: 'Net Promoter Score — a loyalty metric based on how likely customers are to recommend a product, scored 0-10.', cat: 'metrics' },
+    { term: 'CSAT', def: 'Customer Satisfaction score, typically measured right after a specific interaction.', cat: 'metrics' },
+    { term: 'Churn', def: 'The rate at which customers or users stop using a product.', cat: 'metrics' },
+    { term: 'LTV / CLV', def: 'Lifetime Value or Customer Lifetime Value — total revenue expected from a customer over time.', cat: 'metrics' },
+    { term: 'CAC', def: 'Customer Acquisition Cost — what it costs, on average, to acquire one new customer.', cat: 'metrics' },
+    { term: 'Conversion Rate', def: 'The percentage of users completing a desired action, such as signup or purchase.', cat: 'metrics' },
+    { term: 'Funnel', def: 'The sequential steps a user takes toward a goal, and where they tend to drop off.', cat: 'metrics' },
+    { term: 'GMV', def: 'Gross Merchandise Value — the total value of transactions flowing through a marketplace before the platform takes its cut.', cat: 'metrics' },
+    { term: 'Take Rate', def: 'The percentage of GMV a marketplace keeps as revenue, calculated as platform revenue divided by GMV.', cat: 'metrics' },
+    { term: 'Unit Economics', def: 'The profitability of a single unit of the business, such as one delivery, independent of overall scale.', cat: 'metrics' },
+    { term: 'Runway', def: 'How long a company can operate before running out of money at its current burn rate.', cat: 'metrics' },
+
+    { term: 'Supply/Demand Balance', def: 'The core operational tension in a marketplace between available supply, like couriers, and demand, like orders.', cat: 'marketplace' },
+    { term: 'Liquidity', def: 'How efficiently a marketplace matches supply and demand in a given market, often measured by match rate or time-to-match.', cat: 'marketplace' },
+    { term: 'Cold Start Problem', def: 'The challenge of building enough supply and demand at once when entering a new market.', cat: 'marketplace' },
+    { term: 'Network Effects', def: 'The value of a platform increasing as more users, on any side, join it.', cat: 'marketplace' },
+    { term: 'Match Rate', def: 'The percentage of demand, such as orders, that successfully gets matched to available supply.', cat: 'marketplace' },
+    { term: 'Time-to-Match', def: 'How long it takes from an order being placed to a courier or provider being assigned.', cat: 'marketplace' },
+    { term: 'Fill Rate', def: 'The percentage of open delivery slots or orders that actually get fulfilled.', cat: 'marketplace' },
+
+    { term: 'RACI', def: 'Responsible, Accountable, Consulted, Informed — a framework for clarifying decision-making roles on a project.', cat: 'process' },
+    { term: 'Stakeholder Alignment', def: 'Getting the right people bought into a decision before it is made.', cat: 'process' },
+    { term: 'Post-Mortem / Retro', def: 'A structured review after a project or incident to capture what was learned.', cat: 'process' },
+  ];
+
+  let state = {
+    terms: [],
+    mode: 'list',
+    activeCats: new Set(),
+    query: '',
+    gameOrder: [],
+    gameIndex: 0,
+    flipped: false,
+    dark: false,
+  };
+
+  function catInfo(id) { return CATEGORIES.find(c => c.id === id) || CATEGORIES[0]; }
+  function uid() { return 't' + Math.random().toString(36).slice(2, 10); }
+
+  async function loadState() {
+    try {
+      const raw = localStorage.getItem('jargon-terms');
+      state.terms = raw ? JSON.parse(raw) : DEFAULT_TERMS.map(d => ({ id: uid(), ...d, custom: false }));
+    } catch (e) {
+      state.terms = DEFAULT_TERMS.map(d => ({ id: uid(), ...d, custom: false }));
+    }
+    try {
+      state.dark = localStorage.getItem('jargon-theme') === 'dark';
+    } catch (e) {
+      state.dark = false;
+    }
+    applyTheme();
+    render();
+  }
+
+  async function saveTerms() {
+    try { localStorage.setItem('jargon-terms', JSON.stringify(state.terms)); }
+    catch (e) { console.error('save terms failed', e); }
+  }
+  async function saveTheme() {
+    try { localStorage.setItem('jargon-theme', state.dark ? 'dark' : 'light'); }
+    catch (e) { console.error('save theme failed', e); }
+  }
+
+  function filteredTerms() {
+    let list = state.terms;
+    if (state.activeCats.size > 0) list = list.filter(t => state.activeCats.has(t.cat));
+    if (state.query.trim()) {
+      const q = state.query.trim().toLowerCase();
+      list = list.filter(t => t.term.toLowerCase().includes(q) || t.def.toLowerCase().includes(q));
+    }
+    return list;
+  }
+
+  function renderTabs() {
+    const el = document.getElementById('fg-tabs');
+    const allActive = state.activeCats.size === 0;
+    const all = `<button class="fg-tab${allActive ? ' active' : ''}" data-cat="all">All</button>`;
+    const tabs = CATEGORIES.map(c => {
+      const active = state.activeCats.has(c.id);
+      return `<button class="fg-tab${active ? ' active' : ''}" data-cat="${c.id}"><span class="fg-tab-dot" style="background:${active ? '#fff' : c.color}"></span>${c.label}</button>`;
+    }).join('');
+    el.innerHTML = all + tabs;
+    el.querySelectorAll('.fg-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.cat;
+        if (cat === 'all') {
+          state.activeCats.clear();
+        } else {
+          if (state.activeCats.has(cat)) state.activeCats.delete(cat);
+          else state.activeCats.add(cat);
+        }
+        state.gameOrder = [];
+        render();
+      });
+    });
+  }
+
+  function renderCount() {
+    const el = document.getElementById('fg-count');
+    if (state.mode !== 'list') { el.textContent = ''; return; }
+    const n = filteredTerms().length;
+    el.textContent = `${n} term${n === 1 ? '' : 's'}`;
+  }
+
+  function renderList() {
+    const el = document.getElementById('fg-list-view');
+    const list = filteredTerms();
+    if (!list.length) {
+      el.innerHTML = `<div class="fg-list"><div class="fg-empty">No terms match yet. Try a different search, or add one.</div></div>`;
+      return;
+    }
+    const header = `<div class="fg-table-head"><span class="fg-th-term">Term</span><span class="fg-th-def">Definition</span></div>`;
+    el.innerHTML = `<div class="fg-list">` + header + list.map(t => {
+      const c = catInfo(t.cat);
+      return `
+        <div class="fg-row">
+          <div class="fg-row-term-col">
+            <div class="fg-row-dot" style="background:${c.color}"></div>
+            <div class="fg-row-term">${escapeHtml(t.term)}</div>
+          </div>
+          <div class="fg-row-def-col">
+            <div class="fg-row-def">${escapeHtml(t.def)}</div>
+            <div class="fg-row-cat">${c.label}</div>
+          </div>
+          <div class="fg-row-actions">
+            <button class="fg-icon-btn" data-edit="${t.id}" title="Edit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            </button>
+            <button class="fg-icon-btn" data-delete="${t.id}" title="Delete">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+            </button>
+          </div>
+        </div>`;
+    }).join('') + `</div>`;
+
+    el.querySelectorAll('[data-edit]').forEach(b => b.addEventListener('click', () => openModal(b.dataset.edit)));
+    el.querySelectorAll('[data-delete]').forEach(b => b.addEventListener('click', () => deleteTerm(b.dataset.delete)));
+  }
+
+  function shuffleDeck(pool) {
+    const ids = pool.map(t => t.id);
+    for (let i = ids.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [ids[i], ids[j]] = [ids[j], ids[i]];
+    }
+    return ids;
+  }
+
+  function ensureGameOrder() {
+    const pool = filteredTerms();
+    const key = Array.from(state.activeCats).sort().join(',') + '|' + state.query + '|' + pool.length;
+    if (!state.gameOrder.length || state.gameOrder._key !== key) {
+      const deck = shuffleDeck(pool);
+      deck._key = key;
+      state.gameOrder = deck;
+      state.gameIndex = 0;
+      state.flipped = false;
+    }
+  }
+
+  function renderGame() {
+    const el = document.getElementById('fg-game-view');
+    const pool = filteredTerms();
+    if (!pool.length) {
+      el.innerHTML = `<div class="fg-empty" style="padding:40px 0;">No cards to quiz for this filter yet.</div>`;
+      return;
+    }
+    ensureGameOrder();
+    if (state.gameIndex >= state.gameOrder.length) state.gameIndex = 0;
+    const currentId = state.gameOrder[state.gameIndex];
+    const t = state.terms.find(x => x.id === currentId) || pool[0];
+    const c = catInfo(t.cat);
+
+    el.innerHTML = `
+      <div class="fg-game">
+        <div class="fg-game-progress">Card ${state.gameIndex + 1} of ${state.gameOrder.length}</div>
+        <div class="fg-flip-scene">
+          <div class="fg-flip-card${state.flipped ? ' flipped' : ''}" id="fg-flip-card">
+            <div class="fg-flip-face">
+              <div class="fg-flip-label"><span class="fg-tab-dot" style="background:${c.color}"></span>${c.label}</div>
+              <div class="fg-flip-term">${escapeHtml(t.term)}</div>
+              <div class="fg-flip-hint">tap to flip</div>
+            </div>
+            <div class="fg-flip-face fg-flip-face-back">
+              <div class="fg-flip-label"><span class="fg-tab-dot" style="background:${c.color}"></span>${c.label}</div>
+              <div class="fg-flip-def">${escapeHtml(t.def)}</div>
+              <div class="fg-flip-hint">tap to flip back</div>
+            </div>
+          </div>
+        </div>
+        <div class="fg-game-controls">
+          <button class="fg-round-btn" id="fg-prev-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Previous
+          </button>
+          <button class="fg-round-btn" id="fg-next-card">
+            Next
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('fg-flip-card').addEventListener('click', function () {
+      state.flipped = !state.flipped;
+      this.classList.toggle('flipped', state.flipped);
+    });
+    document.getElementById('fg-next-card').addEventListener('click', (e) => {
+      e.stopPropagation();
+      advanceCard(1);
+    });
+    document.getElementById('fg-prev-card').addEventListener('click', (e) => {
+      e.stopPropagation();
+      advanceCard(-1);
+    });
+  }
+
+  function advanceCard(direction) {
+    state.flipped = false;
+    const deckLen = state.gameOrder.length || 1;
+    state.gameIndex = (state.gameIndex + direction + deckLen) % deckLen;
+    render();
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+  }
+
+  function deleteTerm(id) {
+    state.terms = state.terms.filter(t => t.id !== id);
+    saveTerms();
+    state.gameOrder = [];
+    render();
+  }
+
+  function openModal(editId) {
+    const editing = editId ? state.terms.find(t => t.id === editId) : null;
+    const root = document.getElementById('fg-modal-root');
+    root.innerHTML = `
+      <div class="fg-modal-backdrop" id="fg-modal-backdrop">
+        <div class="fg-modal">
+          <h3>${editing ? 'Edit term' : 'Add a new term'}</h3>
+          <div class="fg-field">
+            <label>Term or acronym</label>
+            <input id="fg-input-term" type="text" value="${editing ? escapeHtml(editing.term) : ''}" placeholder="e.g. GMV" />
+          </div>
+          <div class="fg-field">
+            <label>Definition</label>
+            <textarea id="fg-input-def" placeholder="Plain-language definition">${editing ? escapeHtml(editing.def) : ''}</textarea>
+          </div>
+          <div class="fg-field">
+            <label>Category</label>
+            <select id="fg-input-cat">
+              ${CATEGORIES.map(c => `<option value="${c.id}" ${editing && editing.cat === c.id ? 'selected' : ''}>${c.label}</option>`).join('')}
+            </select>
+          </div>
+          <div class="fg-modal-actions">
+            <button class="fg-btn-secondary" id="fg-modal-cancel">Cancel</button>
+            <button class="fg-btn-primary" id="fg-modal-save">${editing ? 'Save changes' : 'Add term'}</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.getElementById('fg-modal-backdrop').addEventListener('click', (e) => {
+      if (e.target.id === 'fg-modal-backdrop') closeModal();
+    });
+    document.getElementById('fg-modal-cancel').addEventListener('click', closeModal);
+    document.getElementById('fg-modal-save').addEventListener('click', () => {
+      const term = document.getElementById('fg-input-term').value.trim();
+      const def = document.getElementById('fg-input-def').value.trim();
+      const cat = document.getElementById('fg-input-cat').value;
+      if (!term || !def) return;
+      if (editing) {
+        editing.term = term; editing.def = def; editing.cat = cat;
+      } else {
+        state.terms.push({ id: uid(), term, def, cat, custom: true });
+      }
+      saveTerms();
+      state.gameOrder = [];
+      closeModal();
+      render();
+    });
+  }
+  function closeModal() { document.getElementById('fg-modal-root').innerHTML = ''; }
+
+  function render() {
+    renderTabs();
+    renderCount();
+    document.getElementById('fg-list-view').style.display = state.mode === 'list' ? '' : 'none';
+    document.getElementById('fg-game-view').style.display = state.mode === 'game' ? '' : 'none';
+    if (state.mode === 'list') renderList(); else renderGame();
+  }
+
+  document.getElementById('fg-search').addEventListener('input', (e) => {
+    state.query = e.target.value;
+    state.gameOrder = [];
+    render();
+  });
+
+  document.getElementById('fg-mode-toggle').addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-mode]');
+    if (!btn) return;
+    document.querySelectorAll('#fg-mode-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.mode = btn.dataset.mode;
+    render();
+  });
+
+  document.getElementById('fg-add-open').addEventListener('click', () => openModal(null));
+
+  const SUN_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+  const MOON_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>';
+
+  function applyTheme() {
+    const root = document.querySelector('.fg-root');
+    root.classList.toggle('fg-dark', state.dark);
+    document.getElementById('fg-theme-btn').innerHTML = state.dark ? SUN_ICON : MOON_ICON;
+  }
+
+  document.getElementById('fg-theme-btn').addEventListener('click', () => {
+    state.dark = !state.dark;
+    applyTheme();
+    saveTheme();
+  });
+
+  loadState();
+})();
+</script>
+</body>
+</html>
